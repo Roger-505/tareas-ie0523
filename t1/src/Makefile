@@ -1,14 +1,16 @@
-# Compiler and simulator
+# Compiler, simulator, and waveform viewer
 VC = iverilog
 SIM = vvp
+WAVEV = gtkwave
 
 # .v files
 DUT = behavioral_parkingController.v 
 TESTER = tester.v
 TB = testbench.v 
 
-# Executable
+# Binaries
 OUTPUT = sim.out
+WAVEFORM = sim.vcd
 
 # Default rule
 all: $(OUTPUT)
@@ -18,12 +20,17 @@ $(OUTPUT): $(DUT) $(TESTER) $(TB)
 	$(VC) -o $(OUTPUT) $(DUT) $(TESTER) $(TB)
 
 # Run sim
-run: $(OUTPUT)
+$(WAVEFORM): $(OUTPUT)
 	$(SIM) $(OUTPUT)
+
+run: $(WAVEFORM)
+
+wave: $(WAVEFORM)
+	$(WAVEV) $(WAVEFORM)
 
 # Clean binaries
 clean:
-	rm -f $(OUTPUT)
+	rm -f $(OUTPUT) $(WAVEFORM) 
 
 # Phony targets
 .PHONY: all run clean

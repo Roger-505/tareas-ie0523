@@ -9,8 +9,15 @@ module tb;
     wire            wrong_ping;
     wire            close_gate;
     wire            blocked_gate;
+    wire            code_ack;
 
-    behavioral_parkingController
+    initial 
+    begin
+        $dumpfile("sim.vcd");
+        $dumpvars(-1, dut);
+    end
+    // carnet = C15990    
+    behavioral_parkingController #(5990)
     dut
     (
         // Inputs
@@ -19,6 +26,7 @@ module tb;
         ,.vehicle_left(vehicle_left)
         ,.clk(clk)
         ,.rst(rst)
+        ,.code_ack(code_ack)
 
         // Outputs
         ,.open_gate(open_gate)
