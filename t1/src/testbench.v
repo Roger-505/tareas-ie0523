@@ -17,7 +17,7 @@ module tb;
         $dumpvars(-1, dut);
     end
     // carnet = C15990    
-    behavioral_parkingController #(5990)
+    behavioral_parkingController #(16'h5990)
     dut
     (
         // Inputs
@@ -44,5 +44,6 @@ module tb;
         ,.vehicle_left(vehicle_left)
         ,.clk(clk)
         ,.rst(rst)
+        ,.code_ack(code_ack)
     );
 endmodule
