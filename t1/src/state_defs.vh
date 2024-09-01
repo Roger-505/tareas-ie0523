@@ -7,5 +7,6 @@
 `define CORRECT_PIN     6'd  8
 `define WAIT_TO_CLOSE   6'd 16
 `define BLOCKED         6'd 32
+`define DEFAULT         6'd  0
 
 `endif
