@@ -99,7 +99,7 @@ module behavioral_parkingController
             `BLOCKED: blocked_gate = 1'b1; 
             default:    // Reset
             begin
-                state           = `NO_VEHICLE;
+                next_state      = `NO_VEHICLE;
                 attempt         = 2'b0;
                 next_attempt    = 2'b0;
                 open_gate       = 1'b0;
