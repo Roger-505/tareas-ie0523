@@ -73,8 +73,11 @@ module behavioral_parkingController
             begin
                 if (attempt < 2'b11) 
                 begin
-                    next_attempt    = attempt + 2'b1;
-                    next_state      = `WAIT_FOR_PIN;
+                    // waits for ack to stop before asking again for pin
+                    if (!code_ack) begin 
+                        next_attempt    = attempt + 2'b1;
+                        next_state      = `WAIT_FOR_PIN;
+                    end
                 end
                 else 
                     next_state = `BLOCKED;
@@ -82,7 +85,7 @@ module behavioral_parkingController
             `CORRECT_PIN: 
             begin
                 open_gate       = 1'b1;
-                next_attempt    = 2'b1;
+                next_attempt    = 2'b0;
 
                 if (vehicle_left)
                 begin
