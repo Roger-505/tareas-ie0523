@@ -6,26 +6,26 @@ module behavioral_parkingController
 )
 (
     // Inputs
-     input          vehicle_arrival
-    ,input  [ 15:0] code
-    ,input          vehicle_left  
-    ,input          clk
-    ,input          rst
-    ,input          code_ack
+     input              vehicle_arrival
+    ,input      [ 15:0] code
+    ,input              vehicle_left  
+    ,input              clk
+    ,input              rst
+    ,input              code_ack
 
     // Outputs
-    ,output reg     open_gate
-    ,output reg     wrong_ping
-    ,output reg     close_gate
-    ,output reg     blocked_gate
+    ,output reg         open_gate
+    ,output reg         wrong_ping
+    ,output reg         close_gate
+    ,output reg         blocked_gate
 );
     // State regs
-    reg     [  5:0] state;
-    reg     [  5:0] next_state;
+    reg [  5:0] state;
+    reg [  5:0] next_state;
     
     // Internal regs
-    reg     [  1:0] attempt;
-    reg     [  1:0] next_attempt;
+    reg [  1:0] attempt;
+    reg [  1:0] next_attempt;
     
     // Secuential logic
     always @(posedge clk) begin
