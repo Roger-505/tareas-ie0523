@@ -96,9 +96,17 @@ module behavioral_parkingController
 
                 next_state  = `NO_VEHICLE; 
              end
-            // ¿BLOCKED, default?
             `BLOCKED: blocked_gate = 1'b1; 
-            default:    next_state  = `BLOCKED;
+            default:    // Reset
+            begin
+                state           = `NO_VEHICLE;
+                attempt         = 2'b0;
+                next_attempt    = 2'b0;
+                open_gate       = 1'b0;
+                wrong_ping      = 1'b0;
+                close_gate      = 1'b0;
+                blocked_gate    = 1'b0;
+            end
         endcase
     end 
 endmodule
