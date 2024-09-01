@@ -77,6 +77,23 @@ module tester_parkingController(
         rst             = 1'b1;
         #50   
         rst             = 1'b0;
+        #50
+        // Prueba 4 : alarma de bloqueo
+        vehicle_arrival = 1'b1;
+        vehicle_left    = 1'b0;
+        code            = 16'h5990;
+        #50
+        code_ack        = 1'b1;
+        #50
+        code            = 16'h0;
+        code_ack        = 1'b0;
+        vehicle_arrival = 1'b1;
+        vehicle_left    = 1'b1;
+        #50
+        vehicle_arrival = 1'b0;
+        rst             = 1'b1;
+        #50
+        rst             = 1'b0;
         $finish;
     end 
 
