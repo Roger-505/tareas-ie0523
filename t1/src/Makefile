@@ -9,8 +9,9 @@ TESTER = tester.v
 TB     = testbench.v 
 
 # Binaries
-OUTPUT   = sim.out
-WAVEFORM = sim.vcd
+OUTPUT   	= sim.out
+WAVEFORM 	= sim.vcd
+WAVE_CFG 	= waves.gtkw
 
 # Default rule
 all: $(OUTPUT)
@@ -26,7 +27,7 @@ $(WAVEFORM): $(OUTPUT)
 run: $(WAVEFORM)
 
 wave: $(WAVEFORM)
-	$(WAVEV) $(WAVEFORM) &
+	$(WAVEV) $(WAVEFORM) --save $(WAVE_CFG)&
 
 # Clean binaries
 clean:

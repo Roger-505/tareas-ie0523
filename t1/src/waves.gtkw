@@ -1,0 +1,46 @@
+[*]
+[*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
+[*] Sun Sep  1 13:15:10 2024
+[*]
+[dumpfile] "/home/roger/Documentos/2024/II/ie0523/tareas/t1/src/sim.vcd"
+[dumpfile_mtime] "Sun Sep  1 13:13:40 2024"
+[dumpfile_size] 1401
+[savefile] "/home/roger/Documentos/2024/II/ie0523/tareas/t1/src/waves.gtkw"
+[timestart] 0
+[size] 1910 999
+[pos] -1168 -16
+*-3.287653 21 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 37
+[signals_width] 266
+[sst_expanded] 0
+[sst_vpaned_height] 155
+@200
+-Inputs
+@28
+tb.dut.clk
+tb.dut.rst
+tb.dut.vehicle_arrival
+@22
+tb.dut.code[15:0]
+@28
+tb.dut.code_ack
+@200
+-Outputs
+@28
+tb.dut.vehicle_left
+tb.dut.open_gate
+tb.dut.close_gate
+tb.dut.wrong_ping
+tb.dut.blocked_gate
+@200
+-Internal regs
+@2022
+^1 /home/roger/Documentos/2024/II/ie0523/tareas/t1/src/wave_names.tff
+tb.dut.state[5:0]
+@2023
+^1 /home/roger/Documentos/2024/II/ie0523/tareas/t1/src/wave_names.tff
+tb.dut.next_state[5:0]
+@28
+tb.dut.attempt[1:0]
+[pattern_trace] 1
+[pattern_trace] 0
