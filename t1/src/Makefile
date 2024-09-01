@@ -1,15 +1,15 @@
 # Compiler, simulator, and waveform viewer
-VC = iverilog
-SIM = vvp
+VC    = iverilog
+SIM   = vvp
 WAVEV = gtkwave
 
 # .v files
-DUT = behavioral_parkingController.v 
+DUT    = behavioral_parkingController.v 
 TESTER = tester.v
-TB = testbench.v 
+TB     = testbench.v 
 
 # Binaries
-OUTPUT = sim.out
+OUTPUT   = sim.out
 WAVEFORM = sim.vcd
 
 # Default rule
@@ -26,7 +26,7 @@ $(WAVEFORM): $(OUTPUT)
 run: $(WAVEFORM)
 
 wave: $(WAVEFORM)
-	$(WAVEV) $(WAVEFORM)
+	$(WAVEV) $(WAVEFORM) &
 
 # Clean binaries
 clean:
