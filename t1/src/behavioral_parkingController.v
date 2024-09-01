@@ -68,6 +68,12 @@ module behavioral_parkingController
                 begin
                     next_state = (code == correct_code) ? `CORRECT_PIN : `INCORRECT_PIN; 
                 end
+
+                // reset if vehicle stops attempting to enter
+                if (vehicle_left) 
+                begin
+                    next_state = `DEFAULT; 
+                end
             end
             `INCORRECT_PIN: 
             begin
