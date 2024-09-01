@@ -47,7 +47,36 @@ module tester_parkingController(
         vehicle_arrival = 1'b0;
         vehicle_left    = 1'b1;
         #50
-        // Prueba #3 :
+        // Prueba #3 : ingreso de pin incorrecto 3 o más veces
+        vehicle_arrival = 1'b1;
+        vehicle_left    = 1'b0;
+        code            = 16'h1234;
+        #50
+        code_ack        = 1'b1;
+        #50
+        code_ack        = 1'b0;
+        code            = 16'h3145;
+        #50
+        code_ack        = 1'b1;
+        #50
+        code_ack        = 1'b0;
+        code            = 16'h4321;
+        #50
+        code_ack        = 1'b1;
+        #50
+        code_ack        = 1'b0;
+        code            = 16'h5555;
+        #50
+        code_ack        = 1'b1;
+        #50
+        code            = 16'h0;
+        code_ack        = 1'b0;
+        vehicle_arrival = 1'b0;
+        vehicle_left    = 1'b1;
+        #50 
+        rst             = 1'b1;
+        #50   
+        rst             = 1'b0;
         $finish;
     end 
 
