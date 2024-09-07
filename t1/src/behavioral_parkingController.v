@@ -82,11 +82,9 @@ module behavioral_parkingController
                     // waits for ack to stop before asking again for pin
                     if (!code_ack) begin 
                         next_attempt    = attempt + 2'b1;
-                        next_state      = `WAIT_FOR_PIN;
+                        next_state      = next_attempt != 2'b11 ? `WAIT_FOR_PIN: `BLOCKED;
                     end
                 end
-                else 
-                    next_state = `BLOCKED;
             end 
             `CORRECT_PIN: 
             begin
