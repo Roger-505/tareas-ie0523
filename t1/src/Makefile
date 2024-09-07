@@ -31,7 +31,7 @@ wave: $(WAVEFORM)
 
 # Clean binaries
 clean:
-	rm -f $(OUTPUT) $(WAVEFORM) 
+	@rm -f $(OUTPUT) $(WAVEFORM) 
 
 # Phony targets
 .PHONY: all run clean
