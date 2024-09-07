@@ -5,6 +5,7 @@ module tester_parkingController(
     ,output reg         clk
     ,output reg         rst
     ,output reg         code_ack
+    ,output reg         gate_ack
 );
     always 
         #1 clk = ~clk;
@@ -17,6 +18,7 @@ module tester_parkingController(
         vehicle_arrival = 1'b0;
         code            = 16'h0;
         code_ack        = 1'b0; 
+        gate_ack        = 1'b0;
         vehicle_left    = 1'b1; 
         #50
         rst             = 1'b0;
@@ -30,10 +32,13 @@ module tester_parkingController(
         code_ack        = 1'b0;
         vehicle_arrival = 1'b0;
         vehicle_left    = 1'b1;
+        #25 
+        gate_ack        = 1'b1;
         #50
         // Prueba #2 : ingreso de pin incorrecto menos de 3 veces
         vehicle_arrival = 1'b1;
         vehicle_left    = 1'b0;
+        gate_ack        = 1'b0;
         code            = 16'h1234;
         #50
         code_ack        = 1'b1;

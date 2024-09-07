@@ -10,6 +10,7 @@ module tb;
     wire            close_gate;
     wire            blocked_gate;
     wire            code_ack;
+    wire            gate_acK;
 
     initial 
     begin
@@ -27,6 +28,7 @@ module tb;
         ,.clk(clk)
         ,.rst(rst)
         ,.code_ack(code_ack)
+        ,.gate_ack(gate_ack)
 
         // Outputs
         ,.open_gate(open_gate)
@@ -45,5 +47,6 @@ module tb;
         ,.clk(clk)
         ,.rst(rst)
         ,.code_ack(code_ack)
+        ,.gate_ack(gate_ack)
     );
 endmodule

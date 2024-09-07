@@ -12,6 +12,7 @@ module behavioral_parkingController
     ,input              clk
     ,input              rst
     ,input              code_ack
+    ,input              gate_ack
 
     // Outputs
     ,output reg         open_gate
@@ -100,10 +101,17 @@ module behavioral_parkingController
              begin
                 open_gate   = 1'b0;
                 close_gate  = 1'b1;
-
-                next_state  = `NO_VEHICLE; 
+                
+                if (gate_ack)
+                    next_state  = `NO_VEHICLE; 
              end
-            `BLOCKED: blocked_gate = 1'b1; 
+            `BLOCKED:
+             begin
+                 if (attempt == 2'b11) 
+                    wrong_ping   = 1'b1;
+                else 
+                    blocked_gate = 1'b1; 
+             end
             default:    // Reset
             begin
                 next_state      = `NO_VEHICLE;
