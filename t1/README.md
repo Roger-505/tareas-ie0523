@@ -42,7 +42,7 @@ Esta guía proporciona los pasos necesarios para compilar y simular un controlad
 
 1. Clona el repoistorio:
     ```bash
-    https://github.com/Roger-505/tareas-ie0523
+    git clone https://github.com/Roger-505/tareas-ie0523
     ```
 
 2. Navega al directorio `src`:
