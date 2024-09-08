@@ -24,6 +24,14 @@ Esta guía proporciona los pasos necesarios para compilar y simular un controlad
     ```bash
     sudo apt install gtkwave
     ```
+* latexmk
+    ```bash
+    sudo apt install latexmk
+    ```
+* pdflatex 
+    ```bash
+    sudo apt install pdflatex
+    ```
 
 </details>
 
@@ -37,9 +45,24 @@ Esta guía proporciona los pasos necesarios para compilar y simular un controlad
     https://github.com/Roger-505/tareas-ie0523
     ```
 
-2. Genera las simulaciones
+2. Navega al directorio `src`:
+    ```bash
+    cd tareas-ie0523
+    ```
+
+3. Genera la simulación:
     ```bash
     make clean wave
+    ```
+
+4. Navega al directorio `informe`:
+    ```bash
+    cd ../informe
+    ```
+
+5. Genera la documentación:
+    ```bash
+    make
     ```
 
 </details>
