@@ -24,13 +24,13 @@ Esta guía proporciona los pasos necesarios para compilar y simular un controlad
     ```bash
     sudo apt install gtkwave
     ```
+* texlive-full
+    ```bash
+    sudo apt install texlive-full
+    ```
 * latexmk
     ```bash
     sudo apt install latexmk
-    ```
-* pdflatex 
-    ```bash
-    sudo apt install pdflatex
     ```
 
 </details>
