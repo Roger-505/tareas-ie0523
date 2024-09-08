@@ -1,0 +1,177 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{preambulo}[2022/09/12 preambulo]
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{xparse}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{amsmath,amsthm,amssymb, mathrsfs,scrextend}
+\usepackage{ragged2e}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{physics}
+\usepackage{graphicx}
+%\usepackage{parskip}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{esint}
+\usepackage{pgf}
+\usepackage{tikz, pgfplots}
+\usepackage{leftindex}
+\usepackage{bbding}
+\usepackage{pifont}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{minted}
+
+% check and cross
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}\hspace{0.3em}}%
+\newcommand{\xmark}{\ding{55}\hspace{0.3em}}%
+
+\usetikzlibrary{automata, arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc, matrix, shapes, positioning, backgrounds, fit, arrows.meta}
+\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+\newcount\total
+\newcount\lasttotal
+\newcount\targetbase
+
+\def\basetenconversiontable#1#2{%
+    \begin{tikzpicture}[every node/.style={minimum width=1cm, minimum height=0.5cm}, x=1cm,y=0.5cm]
+    %
+    \total=#1%
+    \targetbase=#2
+    \def\newnumber{}
+    %
+    \pgfmathloop
+    \ifnum\total<1
+    \else
+        %
+        \ifnum\pgfmathcounter>1
+            \node at (\pgfmathcounter, -\pgfmathcounter+1) (tmp) {\the\targetbase};
+            \draw (tmp.north west) |- (tmp.south east);
+            %
+            \node at (\pgfmathcounter-1, -\pgfmathcounter) (tmp) {\pgfmathparse{int(\total*\targetbase)}\pgfmathresult};
+            \draw (tmp.south west) -- (tmp.south east);
+            %
+            \pgfmathparse{int(\lasttotal-\total*\targetbase)}%
+            \let\digit=\pgfmathresult
+            \node at (\pgfmathcounter-1, -\pgfmathcounter-1) [text=red] {\digit};
+            \edef\newnumber{\digit\newnumber}
+        \fi
+        %
+        \ifnum\total<\targetbase
+                \edef\newnumber{\the\total\newnumber}
+            \node at (\pgfmathcounter, -\pgfmathcounter) [text=red]  {\the\total};
+        \else
+            \node at (\pgfmathcounter, -\pgfmathcounter) {\the\total};
+        \fi
+        \lasttotal=\total
+        \divide\total by\targetbase
+    \repeatpgfmathloop    
+    \end{tikzpicture}   
+}
+
+\usepackage{cancel}
+\usepackage{amsthm}
+\usepackage{xargs}
+\usepackage{caption}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{framed}
+\usepackage{lipsum}
+
+
+%%\usetikzlibrary{decorations.markings}
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+\pgfplotsset{compat=1.18}
+\setlength{\parindent}{0pt}
+\hypersetup{
+colorlinks=true,
+urlcolor=black,
+linkcolor=blue
+}
+
+\allowdisplaybreaks
+
+
+\renewcommand{\footrulewidth}{0.4pt}% Default \footrulewidth is 0pt
+\renewcommand{\headrulewidth}{0.4pt}% Default \footrulewidth is 0pt
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problema}
+
+\newcommand{\infinitz}[1]{\ensuremath{\int_0^{\infty}#1\ dt}}
+\newcommand{\Infinitz}[1]{\ensuremath{\int_0^{\infty}\left(#1\right)\ dt}}
+\newcommand{\infinit}[2]{\ensuremath{\int_{#1}^{\infty}#2\ dt}}
+\newcommand{\Infinit}[2]{\ensuremath{\int_{#1}^{\infty}\left(#2\right)\ dt}}
+\newcommand{\lap}[2][0]{\ensuremath{\int^{\infty}_{#1}#2e^{-st}\,dt}}
+\newcommand{\Lap}[2][0]{\ensuremath{\int^{\infty}_{#1}\left(#2\right)e^{-st}\,dt}}
+\newcommand{\Zapb}[1]{\ensuremath{\sum^\infty_{k=-\infty}#1z^{-k}}}
+\newcommand{\zapb}[1]{\ensuremath{\sum^\infty_{k=-\infty}\frac{#1}{z^k}}}
+\newcommand{\Zap}[1]{\ensuremath{\sum^\infty_{k=0}#1z^{-k}}}
+\newcommand{\zap}[1]{\ensuremath{\sum^\infty_{k=0}\frac{#1}{z^k}}}
+\newcommand{\Cos}[1]{\cos{\left(#1\right)}}
+\newcommand{\Sen}[1]{\sin{\left(#1\right)}}
+\newcommand{\Sin}[1]{\sin{\left(#1\right)}}
+\newcommand{\Sinh}[1]{\sinh{\left(#1\right)}}
+\newcommand{\Cosh}[1]{\cosh{\left(#1\right)}}
+\newcommand{\taninv}{\tan^{-1}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\tZ}[1]{\mathcal{Z}\left\{#1\right\}}
+\newcommandx{\STF}[4][1=\frac{a_0}{2}, 2=a_n, 3=b_n, 4=n\omega_0t]{\ensuremath{#1+\sum^\infty_{n=1}#2\Cos{#4}+#3\Sen{#4}}}
+\newcommandx{\pSTF}[3][1=n\omega_0t,2=\frac{a_0}{2}, 3=a_n]{\ensuremath{#2+\sum^\infty_{n=1}#3\Cos{#1}}}
+\newcommandx{\iSTF}[2][1=b_n, 2=n\omega_0t]{\ensuremath{\sum^\infty_{n=1}#1\Sen{#2}}}
+\newcommandx{\pSSTF}[3][1=n\omega_0t,2=\frac{a_0}{2}, 3=a_n]{\ensuremath{#2+\sum^\infty_{n=1}#3\Sen{#1}}} %Quitar esto lmao
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\exp}[1]{e^{#1}}
+\renewcommand{\L}[1]{\mathscr{L}\left\{#1\right\}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+\newenvironment{solucion}{\begin{addmargin}[0em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}}
+
+\makeatletter
+\renewenvironment{framed}{%
+ \def\FrameCommand##1{\hskip\@totalleftmargin
+ \fboxsep=\FrameSep\fbox{##1}
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed}
+\makeatother
+
+\makeatletter
+\renewenvironment{mdframed}{%
+ \def\FrameCommand##1{\hskip\@totalleftmargin
+ \fboxsep=\FrameSep\fbox{##1}
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed}
+\makeatother
+
+% comandos extra
+\newtcbox{\codeinline}{on line, colback=gray!18, colframe=gray!18, boxrule=0pt, arc=4pt, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=0pt}
+\newcommand{\code}[1]{\codeinline{\texttt{#1}}}
+
+\usepackage{stackengine}
+\newcommand{\xor}{\mathrel{\stackinset{c}{}{c}{-0.15ex}{$ \vee $}{$ \bigcirc $}}}
+
+\definecolor{lightgray}{rgb}{0.9,0.9,0.9}
