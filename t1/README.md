@@ -47,7 +47,7 @@ Esta guía proporciona los pasos necesarios para compilar y simular un controlad
 
 2. Navega al directorio `src`:
     ```bash
-    cd tareas-ie0523
+    cd tareas-ie0523/src
     ```
 
 3. Genera la simulación:
