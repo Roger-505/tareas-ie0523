@@ -40,7 +40,7 @@ module behavioral_parkingController
             close_gate      <= 1'b0;
             blocked_gate    <= 1'b0;
         end 
-        else 
+        else    // FF transition
         begin
             attempt <= next_attempt;
             state   <= next_state;
@@ -107,6 +107,7 @@ module behavioral_parkingController
              end
             `BLOCKED:
              begin
+                 // Alarms
                  if (attempt == 2'b11) 
                     wrong_ping   = 1'b1;
                 else 
