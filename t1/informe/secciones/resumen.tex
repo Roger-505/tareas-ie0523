@@ -1,3 +1,19 @@
 \section{Resumen}
 
+\hspace{0.35cm} El proyecto desarrollado consiste en el diseño y simulación de un controlador automatizado para la entrada de un estacionamiento, implementado en Verilog. 
+El sistema controla la apertura y cierre de la compuerta del estacionamiento en función del código PIN ingresado por el usuario. 
+Una característica distintiva es la implementación de alarmas para casos de ingreso de PIN incorrecto repetido y para la detección de vehículos en tránsito durante el proceso de entrada.
+
+\vspace{0.15cm}
+
+\hspace{0.35cm} Se realizaron cuatro pruebas principales para validar el funcionamiento del diseño.
+La primera prueba verificó el funcionamiento básico, donde se comprobó que el sistema abre la compuerta correctamente con un PIN válido y regresa al estado inicial tras el cierre. 
+En la segunda prueba, se validó la capacidad del sistema para manejar entradas de PIN incorrectos múltiples veces sin bloquear la compuerta, mientras que en la tercera prueba, se verificó que el sistema activa la alarma de bloqueo tras tres intentos fallidos consecutivos.
+La cuarta prueba probó la alarma de bloqueo cuando un segundo vehículo intenta entrar mientras el primero aún está en proceso de entrada.
+
+
+\vspace{0.15cm}
+
+\hspace{0.35cm} Las pruebas confirmaron que el diseño cumple con las especificaciones requeridas. Se recomienda utilizar archivos \code{*.ttf} para mejorar la legibilidad de las formas de onda en simulaciones y emplear sistemas de control de versiones como \code{git} para mantener el orden en el desarrollo. 
+Se sugiere también la implementación de archivos \code{Makefile} modulares para facilitar la gestión de cambios en futuras simulaciones.
 
