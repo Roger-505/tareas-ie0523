@@ -1,7 +1,7 @@
 # Compiler, simulator, and waveform viewer
-VC    = iverilog
-SIM   = vvp
-WAVEV = gtkwave
+VC    = @iverilog
+SIM   = @vvp
+WAVEV = @gtkwave
 
 # .v files
 DUT    = behavioral_parkingController.v 
@@ -24,14 +24,12 @@ $(OUTPUT): $(DUT) $(TESTER) $(TB)
 $(WAVEFORM): $(OUTPUT)
 	$(SIM) $(OUTPUT)
 
-run: $(WAVEFORM)
-
 wave: $(WAVEFORM)
-	$(WAVEV) $(WAVEFORM) --save $(WAVE_CFG)&
+	$(WAVEV) $(WAVEFORM) --save $(WAVE_CFG)
 
 # Clean binaries
 clean:
 	@rm -f $(OUTPUT) $(WAVEFORM) 
 
 # Phony targets
-.PHONY: all run clean
+.PHONY: all clean
