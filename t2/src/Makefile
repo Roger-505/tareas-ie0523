@@ -54,7 +54,7 @@ wave: run
 
 # Clean binaries
 clean:
-	@rm -f $(OUTPUT_RTLIL) $(OUTPUT_CMOS) $(WAVEFORM_RTLIL) $(WAVEFORM_CMOS) $(WAVEFORM)
+	@rm -f $(OUTPUT_RTLIL) $(OUTPUT_CMOS) $(WAVEFORM_RTLIL) $(WAVEFORM_CMOS) $(WAVEFORM) $(SYNTH_DUT_CMOS) $(SYNTH_DUT_RTLIL)
 	
 # Phony targets
 .PHONY: all clean wave run synth_rtlil synth_cmos
