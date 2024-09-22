@@ -1,0 +1,34 @@
+\section{Descripción Arquitectónica}
+A continuación, se describe el diseño que se realizó para implementar el controlador automatizado para la entrada de un estacionamiento de forma conductual, en base a las especificaciones indicadas en el enunciado de esta tarea.
+El módulo que se realizó para lograr esto se denomina \code{behavioral\_parkingController}.
+\subsection{Diagrama de bloques}
+Se generó el siguiente diagrama de bloques para el módulo \code{behavioral\_parkingController}. 
+Este diagrama incluye las señales de entrada, salida, y registros internos del diseño. 
+
+\input{figs/db}
+
+\newpage
+
+\subsection{Descripción señales}
+En la siguiente tabla, se describen cada una de las señales mostradas en la \hyperref[fig1]{Figura 1}.
+Para efectos de esta tarea, todas las señales son activas en alto.
+
+\input{figs/señales}
+
+\newpage
+
+\subsection{Descripción funcional}
+Se generó el siguiente diagrama de estados que describe el funcionamiento de la máquina de estados del módulo \code{behavioral\_parkingController}.
+
+\input{figs/me}
+
+Este diagrama hace precisamente lo indicado en la especificación del controlador en el enunciado de la tarea. 
+Para la codificación de estados en Verilog, se escogió la codificación one-hot. 
+Esta permite que solo cambie un bit a la vez, lo cual disminuye las probabilidades de que se llegue a un estado con codificación desconocida al implementarse en hardware. 
+Hay cuatro funciones adicionales que no se indican en este diagrama. Estas son:
+\begin{itemize}
+    \item En caso de que la señal \code{rst} se ponga en alto, se reinicia el módulo, realizando las acciones especificadas en la descripción de esta señal en la \hyperref[t1]{Tabla 1}.
+    \item En caso de que el controlador llegue a un estado cuya codificación sea desconocida para el controlador, se ejecutan las mismas acciones indicadas para el punto anterior.
+    \item En el estado \code{BLOCKED}, se activa una de dos alarmas, dependiendo de cual fue el estado anterior. Si se ingresó 3 veces consecutivas un pin incorrecto, se activa la alarma \code{wrong\_ping}. Si un vehículo intentó entrar al estacionamiento mientras otro se encontraba entrando, se activa la alarma \code{blocked\_gate}.
+    \item El valor por defecto de \code{correct\_code} es 0x2468. Para efectos de las pruebas realizadas, a este parámetro se le asignó el valor 0x5990. Este valor corresponde a los últimos 4 dígitos de mi carnet, representando en BCD.
+\end{itemize}

@@ -1,0 +1,42 @@
+\section{Plan de pruebas}
+El conjunto de pruebas mínimas que se utilizó para validar el diseño conductual consistió de 3 pruebas, cada una con un conjunto de vectores de entrada.
+Cada una de estas pruebas es explicada en las secciones, y se marca con un \cmark si el diseño pasó la prueba, o con un \xmark si el diseño la falló.
+
+\subsection{Funcionamiento normal básico \cmark}
+En esta prueba, se simuló la llegada de un vehículo a la entrada del estacionamiento. 
+A continuación, se describen los vectores de entrada que se generaron para esta prueba:
+\begin{itemize}
+    \item Ya que esta es la primera prueba que se realiza en la simulación, se reinicia el módulo \code{behavioral\_parkingController}, y todas las señales de entrada se inicializan en bajo, con la excepción de la señal \code{vehicle\_left}, la cual se inicializa en alto. A pesar de esto, note que esta señal sigue siendo activa en alto.
+    \item Se pone en alto \code{vehicle\_arrival} para indicar la llegada de un vehículo, y se ingresa la contraseña correcta $\code{code} = \text{0x5990}$, correspondiente a los últimos 4 dígitos de mi carnet representados en BCD. 
+    \item Se pone en alto \code{code\_ack} para confirmar el ingreso del código.
+    \item Se abre la compuerta, y el vehículo entra al estacionamiento, para que después el controlador vuelva nuevamente al estado \code{NO\_VEHICLE} cuando \code{gate\_ack} se ponga en alto, lo cual confirma que la compuerta ha terminado de cerrarse.
+\end{itemize}
+\subsection{Ingreso de pin incorrecto menos de 3 veces \cmark}
+En esta prueba, se simuló la llegada de un vehículo, ingresa el pin incorrecto dos veces seguidas, y después se retira. 
+A continuación, se describen los vectores de entrada que se generaron en esta prueba:
+\begin{itemize}
+    \item Se pone \code{vehicle\_arrival} en alto para indicar la llegada de un vehículo, y se ingresa una contraseña incorrecta ($\code{code} \neq \text{0x5990}$).
+    \item Se pone en alto \code{code\_ack} para confirmar el ingreso del código.
+    \item No se debe abrir la compuerta, se incrementa el contador de intentos en 1.
+    \item Se realizan nuevamente los dos pasos anteriores, provocando que \code{attempt} = 2. El vehículo se retira, y el controalador vuelve nuevamente al estado inicial \code{NO\_VEHICLE}
+\end{itemize}
+\subsection{Ingreso de pin incorrecto 3 o más veces \cmark}
+En esta prueba, se simuló la llegada de un vehículo, ingresa el pin incorrecto 3 veces seguidas
+A continuación, se describen los vectores de entrada que se generaron en esta prueba:
+\begin{itemize}
+    \item Se pone \code{vehicle\_arrival} en alto para indicar la llegada de un vehículo, y se ingresa una contraseña incorrecta ($\code{code} \neq \text{0x5990}$).
+    \item Se pone en alto \code{code\_ack} para confirmar el ingreso del código.
+    \item No se debe abrir la compuerta, se incrementa el contador de intentos en 1.
+    \item Se realiza dos veces más los dos pasos anteriores, provocando que \code{attempt} = 3. 
+    \item El controlador llega al estado \code{BLOCKED}, y se activa la alarma \code{wrong\_ping}. 
+\end{itemize}
+\subsection{Alarma de bloqueo \cmark}
+En esta prueba, se simuló la llegada de un vehículo, ingresa el pin correcto, y mientras este está ingresando al estacionamiento, un segundo vehículo intenta entrar detrás de el primer vehículo. 
+A continuación, se describen los vectores de entrada que se generaron en esta prueba:
+\begin{itemize}
+    \item Se pone en alto \code{vehicle\_arrival} para indicar la llegada de un vehículo, y se ingresa la contraseña correcta $\code{code} = \text{0x5990}$, correspondiente a los últimos 4 dígitos de mi carnet representados en BCD. 
+    \item Se pone en alto \code{code\_ack} para confirmar el ingreso del código.
+    \item Se abre la compuerta, y el vehículo entra al estacionamiento, poniendo \code{vehicle\_arrival} en bajo, y \code{vehicle\_left} en alto. 
+    \item Antes de que \code{gate\_ack} logre ponerse en alto, \code{vehicle\_arrival} se pone en alto.
+    \item El controlador llega al estado \code{BLOCKED}, y se activa la alarma \code{blocked\_gate}. 
+\end{itemize}

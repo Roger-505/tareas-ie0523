@@ -1,0 +1,37 @@
+\tikzset{
+node distance=7.25cm,
+every state/.style={thick, fill=gray!10},
+auto, semithick,
+initial text=$ $,
+}
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}
+    \node[state, initial] (novehicle) {NO\_VEHICLE};
+    \node[state, right of=novehicle](waitpin) {WAIT\_FOR\_PIN};
+    \node[state, right of=waitpin](incorrectpin) {INCORRECT\_PIN};
+    \node[state, below of=incorrectpin, align=center](blocked) {BLOCKED \\ \code{blocked\_gate = 1}\\ $\xor \code{wrong\_ping = 1}$};
+    \node[state, left of=blocked, align=center](correctpin) {CORRECT\_PIN \\ \code{open\_gate = 1}};
+    \node[state, below of=novehicle, align=center](closegate) {CLOSE\_GATE \\ \code{close\_gate = 1}};
+
+    \draw[arrows ={-Latex}]   
+        (novehicle)     edge[loop above]    node{$\overline{\code{vehicle\_arrival}}$} (novehicle)
+        (novehicle)     edge[above]         node{\code{vehicle\_arrival}} (waitpin)
+        (waitpin)       edge[loop above]    node{$\overline{\code{code\_ack}}$} (waitping)
+        (waitpin)       edge[bend left]     node[align=center]{\code{code\_ack} $\wedge$\\ $\code{code} \neq \code{correct\_code}$} (incorrectpin)
+        (incorrectpin)  edge[left]          node{$\code{attempt\_counter}=3$} (blocked)
+        (incorrectpin)  edge[bend left]     node{$\code{attempt\_counter} < 3$} (waitpin)
+        (blocked)       edge[loop below]    node{$ $} (blocked)
+        (correctpin)    edge[above]         node[align=center]{$\code{vehicle\_left}\wedge$ \\ \code{vehicle\_arrival}} (blocked)
+        (correctpin)    edge[loop below]    node{$\overline{\code{vehicle\_left}}$} (correctpin)
+        (waitpin)       edge[left]          node[align=center]{\code{code\_ack} $\wedge$\\ $\code{code} = \code{correct\_code}$} (correctpin)
+        (correctpin)    edge[above]         node{\code{vehicle\_left}} (closegate)
+        (closegate)     edge[left]          node{\code{gate\_ack}} (novehicle);
+        
+
+\end{tikzpicture}
+\caption{Diagrama de estados del módulo \code{behavioral\_parkingController}}
+\label{fig2}
+\end{figure}
+

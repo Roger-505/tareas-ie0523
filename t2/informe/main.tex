@@ -1,0 +1,20 @@
+\documentclass[12pt]{article}
+
+\usepackage{preambulo}
+
+\begin{document}
+    \input{tikzset.tex}
+    \pagestyle{fancy}
+    \input{hdrftr.tex}
+    \input{portada}
+    \vspace{-1em}
+    \setstretch{1.1}{
+        \input{secciones/resumen}
+        \input{secciones/descripcion}
+        \input{secciones/pruebas}
+        \input{secciones/sim}
+        \input{secciones/resultados}
+        \input{secciones/conclusiones}
+        \input{secciones/git}
+}
+\end{document}

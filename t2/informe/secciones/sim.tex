@@ -1,0 +1,39 @@
+\newpage
+
+\section{Instrucciones de utilización de la simulación}
+A continuación, se detallan los prerequisitos necesarios para ejecutar las pruebas descritas anteriormente, así como los comandos necesarios para correr la simulación. 
+
+\subsection{Prerequisitos}
+\textbf{Nota:} Se aseguró que los comandos que se especificarán a continuación sirvieran únicamente si el usuario corriendo estas simulaciones se encuentre en un sistema operativo Debian o Ubuntu.
+
+Para correr la simulación con las pruebas descritas anteriormente, se requieren las siguientes herramientas de software:
+\begin{itemize}
+    \item \code{iverilog}: Compilador del lenguaje de descripción de hardware Verilog
+    \item \code{make}: Herramienta que automatiza la compilación de programas según las reglas definidas en un \code{Makefile}.
+    \item \code{gtkwave}: Visor de formas de onda.
+    \item \code{git}: Sistema de control de versiones de código fuente.
+\end{itemize}
+
+Puede instalarlos por medio de los siguientes comandos:
+
+\begin{minted}[bgcolor=lightgray]{bash}
+sudo apt update && sudo apt upgrade
+sudo apt install iverilog
+sudo apt install make
+sudo apt install gtkwave
+sudo apt install git
+\end{minted}
+
+\subsection{Uso}
+Clone el repositorio:
+\begin{minted}[bgcolor=lightgray]{bash}
+git clone https://github.com/Roger-505/tareas-ie0523.git
+\end{minted}
+Navegue al directorio \code{src} y genere las simulaciones:
+\begin{minted}[bgcolor=lightgray]{bash}
+cd tareas-ie0523/src    
+make clean wave
+\end{minted}
+Se desplegará una ventana de \code{gtkwave} con las formas de onda de las 4 pruebas descritas anteriormente.
+
+\newpage

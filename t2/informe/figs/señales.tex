@@ -1,0 +1,25 @@
+    \captionof{table}{Señales del módulo \code{behavioral\_parkingController}}
+    \label{t1}
+    \setlength\extrarowheight{3mm}
+    \begin{longtable}{>{\centering\arraybackslash}p{4cm}p{6cm}>{\centering\arraybackslash}p{3cm}>{\centering\arraybackslash}p{3cm}}
+        \toprule\\[-2.5em]
+        Nombre & Descripción & Tipo de puerto & Tipo de señal\\
+        \midrule
+        \code{clk} & Tren de pulsos para la sincronización del circuito. & \code{input} & \code{wire}\\
+        \code{rst} & Reinicia el módulo, poniendo las salidas en bajo, los registros de estado en su estado inicial, e inicializando en 0 el resto de registros internos. & \code{input} & \code{wire}\\
+        \code{vehicle\_arrival} & Indica si ha llegado un vehículo a la entrada del estacionamiento. & \code{input} & \code{wire}\\
+        \code{vehicle\_left} & Indica si se retiró el vehículo que se encontraba en la entrada del estacionamiento. & \code{input} & \code{wire}\\
+        \code{code\_ack} & Confirma el ingreso del pin para ser procesado por el controlador. & \code{input} & \code{wire}\\
+        \code{gate\_ack} & Indica si la puerta ha terminado de cerrarse, después de que el vehículo haya entrado al estacionamiento. & \code{input} & \code{wire}\\
+        \code{code[15:0]} & Contraseña representada en BCD ingresada por el usuario. & \code{input} & \code{wire}\\
+        \code{open\_gate} & Permite abrir la compuerta al usuario cuando este ingresa el pin correcto. & \code{output} & \code{reg}\\
+        \code{close\_gate} & Permite cerrar la compuerta cuando el usuario ya ha entrado al estacionamiento. & \code{output} & \code{reg}\\
+        \code{blocked\_gate} & Alarma de bloqueo que se activa en caso de que se ingrese un pin incorrecto tres veces seguidas, o un vehículo intente entrar al estacionamiento mientras otro vehículo se encuentra ingresando. & \code{output} & \code{reg} \\
+        \code{wrong\_ping} & Alarma que se activa en caso de que se hayan ingresado 3 pines incorrectos consecutivos. & \code{output} & \code{reg}\\
+        \code{correct\_code} & Clave correcta para acceder al estacionamiento. & -- & \code{parameter}\\    
+        \code{state[5:0]} & Almacena el estado actual de la máquina de estados del controlador.  & -- & \code{reg}\\
+        \code{next\_state[5:0]} & Almacena el valor a ser cargado en \code{state[5:0]} en el próximo flanco de reloj & -- & \code{reg}\\
+        \code{attempt[1:0]} & Almacena la cantidad de veces que se ha ingresado un pin incorrecto desde el último reinicio, o desde el último carro que se retiró del panel de ingreso de pin. & -- & \code{reg}\\
+        \code{next\_attempt[1:0]} & Almacena el valor a ser cargado en \code{attempt[1:0]} en el próximo flanco de reloj & -- & \code{reg}\\
+        \bottomrule
+    \end{longtable}
