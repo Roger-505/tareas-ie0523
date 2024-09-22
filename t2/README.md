@@ -7,6 +7,7 @@ Esta guía proporciona los pasos necesarios para compilar y simular un controlad
 ## Requisitos
 
 <details><summary><b>Mostrar instrucciones</b></summary>
+Para Debian y Ubuntu:
 
 * git
     ```bash
