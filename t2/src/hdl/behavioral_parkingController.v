@@ -75,9 +75,10 @@ module behavioral_parkingController
             `INCORRECT_PIN: 
             begin
                 if (!code_ack) begin 
-                        next_attempt    = attempt + 2'b01;
-                        if (attempt != 2'b11)
+                        if (attempt != 2'b11) begin
+                            next_attempt    = attempt + 2'b01;
                             next_state = `WAIT_FOR_PIN;
+                        end
                         else
                             next_state = `BLOCKED;
                 end
