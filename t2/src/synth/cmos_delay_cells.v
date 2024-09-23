@@ -25,5 +25,5 @@ endmodule
 module DFF(C, D, Q);
   input C, D; 
   output reg Q;
-  always @(posedge C) Q <= #5 D;
+  always @(posedge C) Q <= #1 D;
 endmodule
