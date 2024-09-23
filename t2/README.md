@@ -76,7 +76,14 @@ Estas contendrán las formas de onda de la simulación correspondientes a la sí
 
 <center>
 
-![Alt text](./figs/sim.png)
+* `RTLIL`
+![Alt text](./informe/figs/rtlil.png)
+
+* `cmos_cells.lib`
+![Alt text](./informe/figs/sim.png)
+
+* `cmos_cells.lib` + delay
+![Alt text](./informe/figs/sim.png)
 
 </center>
 
