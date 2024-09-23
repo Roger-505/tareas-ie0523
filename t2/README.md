@@ -72,7 +72,7 @@ Para Debian y Ubuntu:
 <details><summary><b>Mostrar instrucciones</b></summary>
 
 Después de compilar el código fuente, se desplegarán dos ventanas de `gtkwave`, una consecutiva a la otra.
-Estas contendrán las formas de onda de la simulación correspondientes a la síntesis con RTLIL y cmos\_cells.lib, respectivamente.
+Estas contendrán las formas de onda de la simulación correspondientes a la síntesis con `RTLIL` y `cmos\_cells.lib`, respectivamente.
 
 <center>
 
@@ -82,11 +82,11 @@ Estas contendrán las formas de onda de la simulación correspondientes a la sí
 
 * `cmos_cells.lib`
 
-![Alt text](./informe/figs/sim.png)
+![Alt text](./informe/figs/cmoscells.png)
 
 * `cmos_cells.lib` + delay
 
-![Alt text](./informe/figs/sim.png)
+![Alt text](./informe/figs/cmoscellsdelay.png)
 
 </center>
 
