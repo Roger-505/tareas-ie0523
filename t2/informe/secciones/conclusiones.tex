@@ -1,12 +1,11 @@
 \section{Conclusiones y recomendaciones}
 \subsection{Conclusiones}
 \begin{itemize}
-    \item Se logró construir una descripción conductual en el lenguaje de descripción de Hardware Verilog de un controlador automatizado para la entrada de un estacionamiento, adecuado a las especificaciones en el enunciado de la tarea.
-    \item Se logró verificar el módulo en Verilog generado para el controlador por medio de 4 pruebas, las cuales comprobaron el correcto funcionamiento del módulo. 
+    \item Se logró sintetizar una descripción conductual en el lenguaje de descripción de Hardware Verilog de un controlador automatizado para la entrada de un estacionamiento, adecuado a las especificaciones en el enunciado de la tarea de tres formas diferentes: \code{RTLIL}, \code{cmos\_cell.lib}, y \code{cmos\_cell.lib} con retardos.
+    \item Se logró verificar los 3 módulos en Verilog sintetizados por medio de 4 pruebas que comprobaron el correcto funcionamiento del módulo.
 \end{itemize}
 \subsection{Recomendaciones}
 \begin{itemize}
-    \item Utilizar archivos \code{*.ttf} (Translate Filter File) para poner etiquetas en las formas de ondas deseadas, y facilitar la lectura de las mismas. 
-    \item Utilizar un sistema de control de versiones como \code{git}, ya que permite tener orden a lo largo del flujo de desarrollo del código fuente. 
-    \item Utilizar archivos \code{Makefile} modulares para poder hacer cambios rápidos en la construcción de las simulaciones, como agregar nuevos archivos de código fuente o nuevas reglas de compilación.
+    \item Revisar los mensajes desplegados por Yosys al realizar la síntesis, ya que esto puede resultar muy útil a la hora de debuggear un código no sintetizable, con el objetivo de hacerlo sintetizable. 
+    \item Utilizar el mismo banco de pruebas para hacer las simulaciones de los módulos sintetizados, ya que esto ahorra el tiempo en agregar un nuevo banco de pruebas o probadores.
 \end{itemize}

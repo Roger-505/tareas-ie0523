@@ -1,5 +1,3 @@
-\newpage
-
 \section{Instrucciones de utilización de la simulación}
 A continuación, se detallan los prerequisitos necesarios para ejecutar las pruebas descritas anteriormente, así como los comandos necesarios para correr la simulación. 
 
@@ -18,10 +16,7 @@ Puede instalarlos por medio de los siguientes comandos:
 
 \begin{minted}[bgcolor=lightgray]{bash}
 sudo apt update && sudo apt upgrade
-sudo apt install iverilog
-sudo apt install make
-sudo apt install gtkwave
-sudo apt install git
+sudo apt install iverilog make gtkwave git 
 \end{minted}
 
 \subsection{Uso}
@@ -31,9 +26,7 @@ git clone https://github.com/Roger-505/tareas-ie0523.git
 \end{minted}
 Navegue al directorio \code{src} y genere las simulaciones:
 \begin{minted}[bgcolor=lightgray]{bash}
-cd tareas-ie0523/src    
+cd tareas-ie0523/t2/src    
 make clean wave
 \end{minted}
-Se desplegará una ventana de \code{gtkwave} con las formas de onda de las 4 pruebas descritas anteriormente.
-
-\newpage
+Se desplegarán 3 ventanas de \code{gtkwave} una consecutiva a la otra con las formas de onda de las 4 pruebas descritas en el informe de la Tarea \#1.
