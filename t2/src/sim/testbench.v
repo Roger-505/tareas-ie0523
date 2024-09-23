@@ -1,4 +1,3 @@
-
 module tb;
     wire            vehicle_arrival;
     wire    [ 15:0] code;

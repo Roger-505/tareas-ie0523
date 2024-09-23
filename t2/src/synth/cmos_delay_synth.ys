@@ -19,4 +19,4 @@ abc -liberty ./synth/cmos_cells.lib
 clean
 
 # Escribir diseño sintetizado
-write_verilog ./synth/cmos_synth_parkingController.v
+write_verilog ./synth/cmos_delay_synth_parkingController.v
