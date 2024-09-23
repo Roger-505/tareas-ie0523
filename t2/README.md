@@ -48,7 +48,7 @@ Para Debian y Ubuntu:
 
 2. Navega al directorio `src`:
     ```bash
-    cd tareas-ie0523/t1/src
+    cd tareas-ie0523/t2/src
     ```
 
 3. Genera las simulaciones:
