@@ -1,0 +1,17 @@
+\section{Resumen}
+
+\hspace{0.35cm} El proyecto desarrollado consiste en un controlador automatizado para la entrada de un estacionamiento, 
+implementado mediante Verilog y sintetizado utilizando las librerías RTLIL y \code{cmos\_cells.lib} en Yosys. 
+Este sistema controla el acceso de vehículos al estacionamiento, validando la entrada 
+correcta y gestionando el estado de la puerta según los estímulos de entrada.
+
+\hspace{0.35cm} Se realizaron pruebas exhaustivas para validar el funcionamiento del controlador en diferentes configuraciones 
+de síntesis. Las simulaciones con la librería \code{cmos\_cells.lib} mostraron un comportamiento correcto del módulo 
+en todas las pruebas, mientras que la síntesis con \code{RTLIL} presentó problemas con la representación de ciertas 
+variables en forma de onda, indicando condiciones no importa en algunas de las señales. Fuera de esto, el módulo RTLIL funcionaba correctamente.
+Además de esto, se simuló el comportamiento del controlador de estacionamiento cuando las celdas de \code{cmos\_cells.lib} poseían retardos. 
+A pesar de esto, se validó el correcto funcionamiento del módulo sintetizado ante estas condiciones. 
+
+\hspace{0.35cm} La síntesis con \code{cmos\_cells.lib} es más fiable para 
+este tipo de diseño, ya que no presentó problemas con condiciones no importa. 
+Se recomienda visualizar los mensajes desplegados por Yosys a la hora de realizar la síntesis, ya que estos ayudan a debuggear código no sintetizable. 

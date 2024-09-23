@@ -1,0 +1,41 @@
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}
+    \matrix (m) [
+        matrix of nodes,
+        nodes in empty cells,
+        nodes = {
+            text height=2ex, text depth=0.5ex,
+            inner sep=1mm, outer sep=0mm,
+        },
+        row sep = 0mm, column sep = 7mm,
+        column 1/.style = {nodes={align=right, anchor=south east}},
+        column 2/.style = {nodes={align=center, anchor=south, text width=34ex}}, % change width of block here
+        column 3/.style = {nodes={align=left, anchor=south west}},
+    ] {
+    clk              &                                                  &                   \\
+    rst              &                                                  &   open\_gate      \\
+    vehicle\_arrival &                                                  &   close\_gate     \\
+    vehicle\_left    &      {\vspace{-1.75cm}\\
+                            correct\_code $\coloneqq$ 0x2468\\
+                            \textbf{behavioral\_parkingController}\\  
+                            state[5:0]\\
+                            next\_state[5:0]\\
+                            attempt[1:0]\\
+                            next\_attempt[1:0]}                         &   blocked\_gate   \\
+    code\_ack        &                                                  &   wrong\_ping     \\
+    gate\_ack        &                                                  &                   \\
+    code[15:0]       &                                                  &                   \\
+    };
+    \scoped[on background layer]
+        \node (enc)  [draw, rounded corners, semithick, fill=gray!10,
+                      inner sep = 0mm, outer sep= 0mm,
+                      fit=(m-1-2) (m-7-2)] {};
+    \foreach    \i in {1,...,7}
+        \draw[-{Triangle[angle=60:2pt 4]}]    (m-\i-1) -- (m-\i-2);
+    \foreach    \i in {2,...,5}
+        \draw[-{Triangle[angle=60:2pt 4]}]    (m-\i-2) -- (m-\i-3);
+\end{tikzpicture}
+\caption{Diagrama de bloques del módulo \code{behavioral\_parkingController}}
+\label{fig1}
+\end{figure}

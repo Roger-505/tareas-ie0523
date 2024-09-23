@@ -1,0 +1,62 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Sun Sep  8 22:10:16 2024
+[*]
+[dumpfile] "/home/roger/Documentos/2024/II/ie0523/tareas/t1/src/sim.vcd"
+[dumpfile_mtime] "Sun Sep  8 22:09:42 2024"
+[dumpfile_size] 11434
+[savefile] "/home/roger/Documentos/2024/II/ie0523/tareas/t1/src/waves.gtkw"
+[timestart] 0
+[size] 1920 1055
+[pos] -976 -16
+*-7.280632 1225 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 39
+[signals_width] 252
+[sst_expanded] 0
+[sst_vpaned_height] 161
+@200
+-Inputs {
+@28
+[color] 1
+tb.dut.clk
+[color] 1
+tb.dut.rst
+[color] 1
+tb.dut.vehicle_arrival
+@22
+[color] 1
+tb.dut.code[15:0]
+@28
+[color] 1
+tb.dut.code_ack
+[color] 1
+tb.dut.gate_ack
+@200
+-}
+-Outputs {
+@28
+[color] 3
+tb.dut.vehicle_left
+[color] 3
+tb.dut.open_gate
+[color] 3
+tb.dut.close_gate
+[color] 3
+tb.dut.wrong_ping
+[color] 3
+tb.dut.blocked_gate
+@200
+-}
+-Internal regs {
+@2022
+^1 /home/roger/Documentos/2024/II/ie0523/tareas/t1/src/wave_names.tff
+tb.dut.state[5:0]
+^1 /home/roger/Documentos/2024/II/ie0523/tareas/t1/src/wave_names.tff
+tb.dut.next_state[5:0]
+@28
+tb.dut.attempt[1:0]
+tb.dut.next_attempt[1:0]
+@200
+-}
+[pattern_trace] 1
+[pattern_trace] 0

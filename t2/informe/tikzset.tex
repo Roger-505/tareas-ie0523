@@ -1,0 +1,108 @@
+\tikzset{middlearrow/.style={
+        decoration={markings,
+            mark= at position 0.5 with {\arrow{#1}} ,
+        },
+        postaction={decorate}
+    }
+}
+
+% conversion de base 10 a base 2
+
+\newcount\columntotal
+\newcount\nextcolumntotal
+\newcount\tmptotal
+\newcount\tmptmptotal
+
+\newcount\targetbase
+\newcount\digitcount
+
+
+\def\getonedigit#1#2;{#1}
+\def\getndigits#1{%
+    \begingroup%
+        \tmptotal=#1
+        \pgfmathloop%
+        \ifnum\tmptotal<10%
+        \else%
+            \divide\tmptotal by10%
+        \repeatpgfmathloop%
+        \pgfmathsmuggle\pgfmathcounter%
+    \endgroup%
+    \edef\ndigits{\pgfmathcounter}%
+}
+
+\def\baseconversiontable#1#2{%
+    \begingroup%
+    \getndigits{#1}%
+    \pgfmathsetlengthmacro\tablecolumnwidth{\ndigits*width("$4$")}%
+    \def\convertednumber{}%
+    \begin{tikzpicture}
+    \node (base conversion table) {%
+        \begin{tikzpicture}
+        [
+            table node/.style={
+                text width=\tablecolumnwidth,
+                inner sep=0pt,
+                align=right,
+                minimum height=0.5cm,
+                minimum width=\tablecolumnwidth+5pt
+            },
+            x=\tablecolumnwidth+5pt,
+            y=0.5cm
+        ]
+            \targetbase=#2
+            \dobaseconversiontable{#1}%
+        \end{tikzpicture}%
+    };%
+    \draw [->](base conversion table.south east) -- ++(-0.5,0);
+    \node [below, anchor=north west] at (base conversion table.south west) {$#1=\convertednumber_{#2}$};
+    \end{tikzpicture}
+    \endgroup%
+}
+
+
+\def\dobaseconversiontable#1{%
+    \columntotal=#1%
+    \getndigits{\columntotal}%
+    \tmptotal=#1%
+    \divide\tmptotal by\targetbase
+    \nextcolumntotal=\tmptotal
+    %
+    \ifnum\columntotal<\targetbase
+        \node at (0, 0) [table node, red] (@) {$\the\columntotal$};%
+        \xdef\convertednumber{\the\columntotal\convertednumber}%
+    \else%
+        \node at (1, 0) [table node] (@) {$\the\targetbase$};%
+        \draw (@.north west) |- (@.south east);
+        %
+        \getndigits{\tmptotal}%
+        \digitcount=\ndigits%
+        %
+        \node at (0,0) [table node] {$\the\columntotal$};%
+        \tmptmptotal=\tmptotal
+        \pgfmathloop
+        \ifnum\digitcount=0
+        \else%
+            \tmptmptotal=\tmptotal
+            \ifnum\digitcount>0
+                \tmptmptotal=\expandafter\getonedigit\the\tmptmptotal;
+            \fi
+            \pgfmathparse{int(\tmptmptotal*\targetbase*10^(\digitcount-1))}%
+            \let\remainder=\pgfmathresult
+            \pgfmathsetcount\columntotal{\columntotal-\remainder}%
+            \advance\digitcount by-1
+            \pgfmathsetcount\tmptotal{\tmptotal-\tmptmptotal*(10^\digitcount)}%
+            \ifnum\columntotal<\targetbase
+                \node at (0,-\pgfmathcounter*2) [table node, red] (@) {$\the\columntotal$};%
+                \xdef\convertednumber{\the\columntotal\convertednumber}%
+                \digitcount=0%
+            \else
+                \node at (0,-\pgfmathcounter*2) [table node](@) {$\the\columntotal$};%
+            \fi
+            \draw (@.north west) -- (@.north east);
+            \node at (0,-\pgfmathcounter*2+1) [table node] {$\remainder$};%
+        \repeatpgfmathloop%
+        \tikzset{shift={(1,-1)}}%
+        \expandafter\dobaseconversiontable\expandafter{\the\nextcolumntotal}%
+    \fi
+}%

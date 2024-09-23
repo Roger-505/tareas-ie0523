@@ -1,13 +1,13 @@
-# Tarea \# 1 - IE0523
+# Tarea \# 2 - IE0523
 
-## Descripción conductual de un controlador automatizado para la entrada de un estacionamiento.
+## Descripción estructural de un controlador automatizado para la entrada de un estacionamiento.
 
-Esta guía proporciona los pasos necesarios para compilar y simular un controlador automatizado para la entrada de un estacionamiento en el lenguaje de descripción de hardware Verilog. 
+Esta guía proporciona los pasos necesarios para compilar y simular un controlador automatizado estructural para la entrada de un estacionamiento en el lenguaje de descripción de hardware Verilog. 
 
 ## Requisitos
 
 <details><summary><b>Mostrar instrucciones</b></summary>
-Para Debian/Ubuntu:
+Para Debian y Ubuntu:
 
 * git
     ```bash
@@ -48,10 +48,10 @@ Para Debian/Ubuntu:
 
 2. Navega al directorio `src`:
     ```bash
-    cd tareas-ie0523/t1/src
+    cd tareas-ie0523/t2/src
     ```
 
-3. Genera la simulación:
+3. Genera las simulaciones:
     ```bash
     make clean wave
     ```
@@ -71,11 +71,22 @@ Para Debian/Ubuntu:
 ### Simulación 
 <details><summary><b>Mostrar instrucciones</b></summary>
 
-Después de compilar el código fuente, se desplegará una ventana de `gtkwave` con las formas de onda de la simulación. 
+Después de compilar el código fuente, se desplegarán dos ventanas de `gtkwave`, una consecutiva a la otra.
+Estas contendrán las formas de onda de la simulación correspondientes a la síntesis con `RTLIL` y `cmos\_cells.lib`, respectivamente.
 
 <center>
 
-![Alt text](./figs/sim.png)
+* `RTLIL`
+
+![Alt text](./informe/figs/rtlil.png)
+
+* `cmos_cells.lib`
+
+![Alt text](./informe/figs/cmoscells.png)
+
+* `cmos_cells.lib` + delay
+
+![Alt text](./informe/figs/cmoscellsdelay.png)
 
 </center>
 

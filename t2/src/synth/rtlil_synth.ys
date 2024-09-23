@@ -1,0 +1,16 @@
+# Read design
+read_verilog -I./include ./hdl/behavioral_parkingController.v
+
+hierarchy -check -top behavioral_parkingController
+
+# High level optimizaiton 
+proc; opt; fsm; opt; memory; opt
+
+# Map to RTLIL
+techmap; opt
+
+# cleanup
+clean
+
+# Escribir diseño sintetizado
+write_verilog synth/rtlil_synth_parkingController.v
